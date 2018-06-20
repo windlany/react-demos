@@ -1,0 +1,28 @@
+header {
+    background-color: #eee;
+    margin-bottom: 30px;
+}
+header div {
+    width: 720px;
+    padding: 48px 0;
+    margin: 0 auto;
+    position: relative;
+}
+header h1 {
+    font-size: 63px;
+    text-align: center;
+    font-weight: 500;
+    color: #333;
+}
+header .btn {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    padding: 9px 12px;
+    cursor: pointer;
+} 

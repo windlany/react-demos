@@ -1,0 +1,15 @@
+body, ul, h1, h2, h3, h4, p {
+    padding: 0;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #555;
+}
+input:focus, button:focus {
+    outline: none;
+}

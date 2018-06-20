@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>count</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <p>
+            Clicked:
+            <span id="value">0</span> times
+            <button id="add">+</button>
+            <button id="rem">-</button>
+            <button id="addIfOdd">Increment if odd</button>
+            <button id="addAsync">Increment async</button>
+        </p>
+    </div>
+
+    <script>
+        var { createStore } = Redux;
+
+        // state是一个状态
+        var initialState = 0;
+        function counter(state = initialState, action) {  // 为state赋初值
+            switch (action.type) {  // 根据传入的action.type来修改state
+                case 'ADD': return state + 1;
+                case 'REM': return state - 1;
+                default: return state;
+            }
+        }
+
+        var store = createStore(counter);  // 将counter包装成一个状态管理块
+
+        var val = document.getElementById('value');
+        function render() {
+            val.innerHTML = store.getState();
+        }
+
+        render();
+        var cancel = store.subscribe(render); // 监听state，state改变就会执行render
+
+        document.getElementsByTagName('p')[0].addEventListener('click', function (event) {
+            event = event || window.event;
+            var target = event.target;
+
+            switch (target.id) {
+                case 'add':
+                    store.dispatch({
+                        type: 'ADD'
+                    })
+                    break;
+                case "rem":
+                    store.dispatch({
+                        type: 'REM'
+                    })
+                    break;
+                case "addIfOdd":
+                    if (store.getState() % 2 !== 0) {
+                        store.dispatch({ type: 'ADD' })
+                    }
+                    break;
+                case "addAsync":
+                    setTimeout(function () {
+                        store.dispatch({
+                            type: 'ADD'
+                        });
+                    }, 1000);
+                    break;
+            }
+        }) 
+    </script>
+</body>
+
+</html>
